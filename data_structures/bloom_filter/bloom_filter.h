@@ -42,10 +42,10 @@ BloomFilter::~BloomFilter() {
 
 uint32_t bytes2uint32(const char* b) {
     uint32_t ret;
-    ret |= ((int)b[0] << 24) & 0xFF000000;
-    ret |= ((int)b[1] << 16) & 0x00FF0000;
-    ret |= ((int)b[2] << 8) & 0x0000FF00;
-    ret |= ((int)b[0] << 0) & 0x000000FF;
+    ret = (b[0] << 24) & 0xFF000000;
+    ret |= (b[1] << 16) & 0x00FF0000;
+    ret |= (b[2] << 8) & 0x0000FF00;
+    ret |= (b[3] << 0) & 0x000000FF;
     return ret;
 }
 
