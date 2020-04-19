@@ -8,18 +8,20 @@ int main() {
         std::cout << "####################################" << std::endl;
         int buckets = pr.first;
         int hashes = pr.second;
+
+        // Vocabulary
         std::vector<std::string> vocabulary {
             "Bloom", "filter", "test", "vocabulary", "cats", "dogs", "and", "other", "stuff" 
         }; 
-
-        std::cout << "Creating a bloom filter with " << buckets << " buckets and " << hashes << " hash functions..." << std::endl;
-        BloomFilter bl(buckets, hashes);
-        std::cout << "Probability of a false positive is " << bl.getFalsePositiveProbability(vocabulary.size()) << std::endl;
-    
+        // Out of vocabulary words
         std::vector<std::string> oov {
             "This", "words", "are", "not", "in", "the", "dictionary" 
         };
 
+        std::cout << "Creating a bloom filter with " << buckets << " buckets and " << hashes << " hash functions..." << std::endl;
+        BloomFilter bl(buckets, hashes);
+        std::cout << "Probability of a false positive is " << bl.getFalsePositiveProbability(vocabulary.size()) << std::endl;
+       
         std::cout << "Adding words..." << std::endl;
         for(auto word: vocabulary) {
             bl.add(word);
