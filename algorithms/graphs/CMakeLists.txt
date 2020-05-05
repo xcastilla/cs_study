@@ -1,0 +1,5 @@
+set (CMAKE_CXX_STANDARD 11)
+add_executable (bfs tests/bfs_test.cpp)
+add_executable (dfs tests/dfs_test.cpp)
+add_executable (conn_comps tests/conn_components_test.cpp)
+add_executable (prim tests/mst_prim_test.cpp)

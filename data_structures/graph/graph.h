@@ -1,12 +1,20 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <iostream>
 
 struct Edge {
     int fromIdx;
     int toIdx;
     float weight;
     Edge(int fromIdx, int toIdx, float weight): fromIdx(fromIdx), toIdx(toIdx), weight(weight) {};
+};
+
+// State used for graph traversal algorithms
+enum class state {
+    UNDISCOVERED = 0,
+    DISCOVERED = 1,
+    PROCESSED = 2
 };
 
 class Graph {
@@ -17,6 +25,12 @@ public:
     void addEdge(int from, int to, float weight);
     inline bool isDirected() const { return directed_; };
 
+    friend std::pair<std::vector<int>, std::vector<state>> bfs(Graph *g, int start); // Implemented in algorithms/graphs/bfs.h
+    friend std::pair<std::vector<int>, std::vector<state>> dfs(Graph *g, int start); // Implemented in algorithms/graphs/dfs.h
+    friend void dfs_(Graph *g, int node, std::vector<state>& nodeStatus, std::vector<int>& depth); // Implemented in algorithms/graphs/dfs.h
+    friend int connected_components(Graph *g);  // Implemented in algorithms/graphs/connected_components.h
+    friend std::pair<float, std::vector<int>> prim(Graph *g, int start);  // Implemented in algorithms/graphs/min_spanning_tree.h
+
     friend std::ostream& operator <<(std::ostream& oss, const Graph& other) {
         for(int i = 0; i < other.nNodes_; i++) {
             for(Edge eg: other.adjList_[i]) {
@@ -25,6 +39,7 @@ public:
         }
         return oss;
     }
+    
 
 private:
     // Number of nodes
@@ -51,11 +66,11 @@ Graph::~Graph() {
 }
 
 void Graph::addEdge(int from, int to, float weight) {
-    if(from > nNodes_) {
+    if(from > nNodes_ - 1) {
         std::cerr << "Invalid node id: " << from  << std::endl;
         return;
     }
-    else if(to > nNodes_) {
+    else if(to > nNodes_ - 1) {
         std::cerr << "Invalid node id: " << to  << std::endl;
         return;
     }
@@ -94,3 +109,4 @@ Graph* Graph::fromFile(std::string path, bool directed) {
     }
     return g;
 } 
+
