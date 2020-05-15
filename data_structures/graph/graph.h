@@ -25,11 +25,16 @@ public:
     void addEdge(int from, int to, float weight);
     inline bool isDirected() const { return directed_; };
 
-    friend std::pair<std::vector<int>, std::vector<state>> bfs(Graph *g, int start); // Implemented in algorithms/graphs/bfs.h
-    friend std::pair<std::vector<int>, std::vector<state>> dfs(Graph *g, int start); // Implemented in algorithms/graphs/dfs.h
-    friend void dfs_(Graph *g, int node, std::vector<state>& nodeStatus, std::vector<int>& depth); // Implemented in algorithms/graphs/dfs.h
-    friend int connected_components(Graph *g);  // Implemented in algorithms/graphs/connected_components.h
-    friend std::pair<float, std::vector<int>> prim(Graph *g, int start);  // Implemented in algorithms/graphs/min_spanning_tree.h
+    // Implemented in algorithms/graphs/bfs.h
+    friend std::pair<std::vector<int>, std::vector<state>> bfs(Graph *g, int start);
+    // Implemented in algorithms/graphs/dfs.h
+    friend std::pair<std::vector<int>, std::vector<state>> dfs(Graph *g, int start);
+    // Auxiliar recursive function performing DFS - Called from dfs
+    friend void dfs_(Graph *g, int node, std::vector<state>& nodeStatus, std::vector<int>& depth);
+    // Implemented in algorithms/graphs/connected_components.h
+    friend int connected_components(Graph *g);
+    // Implemented in algorithms/graphs/min_spanning_tree.h
+    friend std::pair<float, std::vector<int>> prim(Graph *g, int start);
 
     friend std::ostream& operator <<(std::ostream& oss, const Graph& other) {
         for(int i = 0; i < other.nNodes_; i++) {

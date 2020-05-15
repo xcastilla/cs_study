@@ -21,7 +21,7 @@ std::pair<float, std::vector<int>> prim(Graph *g, int start) {
                 minIdx = i;
             }
         }
-        // Include the vertex in the MST
+        // Include the vertex in the MST and update cost
         inMST[minIdx] = true;
         cost += min;
 
