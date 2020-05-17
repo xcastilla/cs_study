@@ -35,6 +35,7 @@ public:
     friend int connected_components(Graph *g);
     // Implemented in algorithms/graphs/min_spanning_tree.h
     friend std::pair<float, std::vector<int>> prim(Graph *g, int start);
+    friend std::pair<float, std::vector<int>> kruskal(Graph *g);
 
     friend std::ostream& operator <<(std::ostream& oss, const Graph& other) {
         for(int i = 0; i < other.nNodes_; i++) {
@@ -49,6 +50,8 @@ public:
 private:
     // Number of nodes
     int nNodes_;
+    // Number of edges
+    int nEdges_;
     // Adjacency list for each node in the graph
     std::vector<std::vector<Edge>> adjList_;
     // Output degree for every node in the graph
@@ -59,6 +62,7 @@ private:
 
 Graph::Graph(int nNodes, bool directed) {
     nNodes_ = nNodes;
+    nEdges_ = 0;
     directed_ = directed;
     for(int i = 0; i < nNodes; i++) {
         adjList_.push_back(std::vector<Edge>());
@@ -81,6 +85,7 @@ void Graph::addEdge(int from, int to, float weight) {
     }
     adjList_[from].push_back(Edge(from, to, weight));
     degree_[from]++;
+    nEdges_++;
 }
 
 Graph* Graph::fromFile(std::string path, bool directed) {
