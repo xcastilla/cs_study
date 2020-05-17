@@ -1,5 +1,6 @@
 # Computer Science study repository
-A personal collection of algorithm, data structures and computer science concepts with some of their implementations for personal study.
+A personal collection of algorithms, data structures and computer science concepts with some of their implementations for personal study.
+This repository is still *very* WIP.
 
 ```
 ├── algorithms
