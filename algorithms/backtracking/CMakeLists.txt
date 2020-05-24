@@ -1,0 +1,5 @@
+set (CMAKE_CXX_STANDARD 11)
+add_executable (make_subsets make_subsets.cpp)
+add_executable (make_permutations permutations.cpp)
+add_executable (paths find_paths_graph.cpp)
+add_executable (sudoku sudoku.cpp)
