@@ -24,6 +24,9 @@ public:
     static Graph* fromFile(std::string path, bool directed);
     void addEdge(int from, int to, float weight);
     inline bool isDirected() const { return directed_; };
+    // Return adjacency list for a given node - assumes node exists
+    inline std::vector<Edge> getAdjList(int node) const { return adjList_[node]; };
+    inline int getNumberNodes() const { return nNodes_; };
 
     // Implemented in algorithms/graphs/bfs.h
     friend std::pair<std::vector<int>, std::vector<state>> bfs(Graph *g, int start);
@@ -36,6 +39,8 @@ public:
     // Implemented in algorithms/graphs/min_spanning_tree.h
     friend std::pair<float, std::vector<int>> prim(Graph *g, int start);
     friend std::pair<float, std::vector<int>> kruskal(Graph *g);
+    // Implemented in algorithms/graphs/dijkstra.h
+    friend std::pair<float, std::vector<int>> dijkstra(Graph* g, int from, int to);
 
     friend std::ostream& operator <<(std::ostream& oss, const Graph& other) {
         for(int i = 0; i < other.nNodes_; i++) {
