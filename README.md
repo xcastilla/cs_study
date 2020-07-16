@@ -17,12 +17,14 @@ Disclaimer! This repository is still *very* WIP.
 │       ├── BFS
 │       ├── DFS
 │       ├── MST (Kruskal, Prim)
-│       └── Connected components
+|       ├── Connected components
+│       └── Dijkstra
 ├── data_structures
 │   ├── AVL Tree
 │   ├── Bloom Filter
 │   ├── Graph
 │   ├── Union Find sets
+|   ├── Red Black Trees
 │   └── Linked List
 └── systems
     └── malloc
