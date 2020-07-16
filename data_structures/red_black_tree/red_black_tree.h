@@ -11,9 +11,6 @@ struct node {
     color_t color;
     node *left, *right, *parent;
     node(int key, color_t color, node *nil) : key(key), color(color), left(nil), right(nil), parent(nil) { };
-    node* left_rotate();
-    node* right_rotate();
-    node* insert(int key);
 
     friend std::ostream& operator <<(std::ostream& oss, const node& other) {
         if(other.color != color_t::NIL) {
